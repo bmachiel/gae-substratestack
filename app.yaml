@@ -4,7 +4,9 @@ runtime: python
 api_version: 1
 skip_files: |
  (.*~)|
- (.*\.py[co])
+ (.*\.py[co])|
+ (.git)|
+ (.gitignore)
 
 handlers:
 - url: /images
