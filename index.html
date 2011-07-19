@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>substratestack</title>
+    <meta name="author" content="Brecht Machiels">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" charset="utf-8">
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+
+<div id="sidebar">
+    <h3>substratestack demo</h3>
+    
+    This page serves to demo <a href="http://github.com/bmachiel/python-substratestack">substratestack</a>. 
+    You can alter the Python source code on the right and execute it using the <i>Run</i> button below. When
+    this doesn't result in errors (see the log at the bottom), you can download the output files using the 
+    <i>Download</i> button.
+    <br /><br />
+    The sample code on the right is the
+    <a href="http://github.com/bmachiel/python-substratestack/tree/v{{ ss_version }}/examples">example provided with substratestack</a>,
+    but concatenated into a single file. If you want to save your changes, simply copy and paste it into
+    a file on your computer.
+    <br /><br />
+    <center>
+        <input type="submit" id="run" value="Run" style="display: inline">&nbsp;&nbsp;
+        <form id="download" method="post" action="run" style="display: inline">
+            <input type="hidden" id="download_script" name="script" />
+            <input type="hidden" name="download" value="true" />
+            <input type="submit" id="download_btn" value="Download" />
+        </form>
+    </center>
+    <br />
+    Note that any data you enter (such as confidential process technology data) is sent across the internet
+    as plain text. For increased security, access this page through <a href="https://substratestack.appspot.com/">HTTPS</a>.
+    <br /><br />
+    <b>DISCLAIMER:</b> While no data is being stored or logged on the server, the script is of course loaded into the server's memory
+    during execution. Use of this service is at your own risk. The author can't be held responsible for anything that might happen to
+    your data. If you want to avoid any possible security issues, you can install <a href="http://github.com/bmachiel/python-substratestack">substratestack</a>
+    locally.
+    <div id="acknowledgement">
+        substratestack {{ ss_version }}<br />
+        <a href="http://ace.ajax.org/"><img src="images/ace.png" alt="Powered by Ajax.org Cloud9 Editor" border="0" /></a>
+        <a href="http://code.google.com/appengine/"><img src="images/gae.png" alt="Powered by Google App Engine" border="0" /></a>
+    </div>
+</div>
+<div id="editor">{{ script|escape }}</div>
+<div id="output"><pre></pre></div>
+
+
+<script src="ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="ace/src/mode-python.js" type="text/javascript" charset="utf-8"></script>
+<script>
+function scroll_down(){
+    var d = document.getElementById('output');
+    d.scrollTop = d.scrollHeight;
+};
+
+$(document).ready(function() {
+    var editor = ace.edit("editor");
+    var PythonMode = require("ace/mode/python").Mode;
+    editor.setTheme("ace/theme/textmate");
+    editor.getSession().setMode(new PythonMode());
+    
+    $("#run").click(function(){
+        $("#output pre").empty()
+        $("#output pre").load("run",
+                              { script: editor.getSession().getValue() },
+                              scroll_down);
+    });
+    
+    $("#download").submit(function(){
+        $("#download_script").val(editor.getSession().getValue());
+    });
+});
+</script>
+
+</body>
+</html>

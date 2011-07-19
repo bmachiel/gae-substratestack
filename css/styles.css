@@ -1,0 +1,67 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #333;
+}
+
+#sidebar {
+    position: absolute;
+    /*float: left;
+    clear: left;*/
+    top: 0;
+    bottom: 0;
+    display: block;
+    width: 220px;
+    /*background-color: #999;*/
+	background-color: #ddd;
+    margin: 5px;
+    padding: 10px;
+
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+#sidebar h3 {
+	color: #154484;
+	text-align: center;
+}
+
+#sidebar a {
+	color: #206492;
+	text-decoration:none;
+}
+
+
+#acknowledgement {
+    position: absolute;
+    bottom: 0;
+	left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+#editor {
+    position: absolute;
+    top: 0px;
+    left: 250px;
+    bottom: 200px;
+    right: 0px;
+    background: white;
+}
+
+#output {
+    position: absolute;
+    bottom:0;
+    left: 250px;
+    right: 0;
+    height: 185px;
+    background: white;
+    overflow: auto;
+	padding: 5px;
+}
+
+#output pre {
+	font-family: Courier;
+	font-size: 13px;
+}
