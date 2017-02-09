@@ -1,7 +1,8 @@
 application: substratestack
 version: 1
-runtime: python
+runtime: python27
 api_version: 1
+threadsafe: false
 skip_files: |
  (.*~)|
  (.*\.py[co])|
@@ -27,3 +28,7 @@ handlers:
 
 - url: /.*
   script: index.py
+
+libraries:
+- name: django
+  version: "1.5"
